@@ -120,7 +120,6 @@ Filesystem      Size  Used Avail Use% Mounted on
 /dev/root        30G  6.0G   22G  22% /
 ```
 
-
 # LAN Auditor
 This is where this actually becomes a project. I want the raspberry pi to periodically scan my home network and enumerate devices and vulnerabilities.
 

@@ -2,12 +2,19 @@
   remote_user: root
 
   tasks:
+    - name: Fix broken dependencies that come with our kali distro
+      command: apt --fix-broken install -y
+
     - name: Ensure aptitude is present using apt
       apt:
         name: aptitude
         state: latest
         update_cache: yes
         force_apt_get: yes
+        ignore_errors: yes
+
+    - name: Fix broken dependencies that come with our kali distro
+      command: apt --fix-broken install -y
 
     - name: Install required packages
       apt:
@@ -22,14 +29,25 @@
         state: latest
         update_cache: yes
 
+    - name: Fix broken dependencies that come with our kali distro
+      command: apt --fix-broken install -y
+
     - name: Ensure openvas is installed
       apt:
         name: openvas
         state: latest
         update_cache: yes
+        ignore_errors: yes
+
+    - name: Fix broken dependencies that come with our kali distro
+      command: apt --fix-broken install -y
 
     - name: Run openvas-setup
       command: openvas-setup
+      ignore_errors: yes
+
+    - name: Fix broken dependencies that come with our kali distro
+      command: apt --fix-broken install -y
 
 # Install lan-auditor
 
