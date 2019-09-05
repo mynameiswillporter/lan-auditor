@@ -34,6 +34,16 @@
         path: /var/log/lan-auditor
         state: directory
 
+    - name: Create lan-auditor/scans directory
+      file:
+        path: /opt/lan-auditor/scans
+        state: directory
+
+    - name: Create lan-auditor/utils directory
+      file:
+        path: /opt/lan-auditor/utils
+        state: directory
+
     - name: Copy host_scan.sh
       copy:
         src: ../../scripts/scans/host_scan.sh
@@ -51,3 +61,9 @@
         src: ../../scripts/utils/unique_host_ips.sh
         dest: /opt/lan-auditor/utils/unique_host_ips.sh
         mode: '0755'
+
+    - name: Run a host_scan every 5 minutes
+      cron:
+        name: "host_scan"
+        minute: "*/5"
+        job: "/opt/lan-auditor/scans/host_scan.sh"
