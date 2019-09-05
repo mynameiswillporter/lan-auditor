@@ -14,13 +14,22 @@
         name: "{{ item }}"
         state: latest
         update_cache: yes
-      loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'python3-pip', 'virtualenv', 'python3-setuptools']
+      loop: [ 'vim', 'apt-transport-https', 'ca-certificates', 'curl', 'python3-pip', 'virtualenv', 'python3-setuptools']
 
     - name: Ensure nmap is installed
       apt:
         name: nmap
         state: latest
         update_cache: yes
+
+    - name: Ensure openvas is installed
+      apt:
+        name: openvas
+        state: latest
+        update_cache: yes
+
+    - name: Run openvas-setup
+      command: openvas-setup
 
 # Install lan-auditor
 

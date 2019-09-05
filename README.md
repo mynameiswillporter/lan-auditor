@@ -82,6 +82,44 @@ Mine was 192.168.1.131
 
 `toor` is the default password, so be sure to change it!
 
+9. Ensure you are using the full SD Disk.
+
+Even though I have a 32GB SD Card, the flashing process has resulted in only
+7.2GB being alotted to me.
+
+```
+root@kali-pi:~# df -h /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root       7.2G  6.0G  743M  90% /
+```
+
+So we need to resize the partition to fill the SD card.
+First we install `raspi-config`.  This would normally be available
+on raspberry pi configurations, but we have kali so...
+
+```
+apt-get update
+apt install lua5.1 alsa-utils psmisc && apt --fix-broken install
+
+wget https://archive.raspberrypi.org/debian/pool/main/r/raspi-config/raspi-config_20180406+1_all.deb
+wget https://archive.raspberrypi.org/debian/pool/main/r/rpi-update/rpi-update_20140705_all.deb
+dpkg -i raspi-config_20180406+1_all.deb
+dpkg -i rpi-update_20140705_all.deb
+```
+Now we run `raspi-config`.
+
+This has one of those weird command line gui's so choose `7 Advanced Options` and then `A1 Expand Filesystem`.
+
+Then choose `Reboot`.
+
+Once it reboots, ssh back in and check the disk availability.
+
+```
+root@kali-pi:~# df -h /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        30G  6.0G   22G  22% /
+```
+
 
 # LAN Auditor
 This is where this actually becomes a project. I want the raspberry pi to periodically scan my home network and enumerate devices and vulnerabilities.
