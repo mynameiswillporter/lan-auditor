@@ -59,7 +59,7 @@ drwxr-xr-x  12 root root       4096 Mar 15  2016 var
 sudo vim etc/crontab
 ```
 
-# add line to start ssh server
+Add line to start ssh server
 
 ```
  * *   * * *    dpkg-reconfigure openssh-server
