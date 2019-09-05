@@ -1,0 +1,23 @@
+- hosts: kali-pi
+  remote_user: root
+
+  tasks:
+    - name: Ensure aptitude is present using apt
+      apt:
+        name: aptitude
+        state: latest
+        update_cache: yes
+        force_apt_get: yes
+
+    - name: Install required packages
+      apt:
+        name: "{{ item }}"
+        state: latest
+        update_cache: yes
+      loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'python3-pip', 'virtualenv', 'python3-setuptools']
+
+    - name: Ensure nmap is installed
+      apt:
+        name: nmap
+        state: latest
+        update_cache: yes
