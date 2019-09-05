@@ -33,3 +33,21 @@
       file:
         path: /var/log/lan-auditor
         state: directory
+
+    - name: Copy host_scan.sh
+      copy:
+        src: ../../scripts/scans/host_scan.sh
+        dest: /opt/lan-auditor/scans/host_scan.sh
+        mode: '0755'
+
+    - name: Copy unique_ips.sh
+      copy:
+        src: ../../scripts/utils/unique_ips.sh
+        dest: /opt/lan-auditor/utils/unique_ips.sh
+        mode: '0755'
+
+    - name: Copy unique_host_ips.sh
+      copy:
+        src: ../../scripts/utils/unique_host_ips.sh
+        dest: /opt/lan-auditor/utils/unique_host_ips.sh
+        mode: '0755'
