@@ -83,7 +83,7 @@ Mine was 192.168.1.131
 `toor` is the default password, so be sure to change it!
 
 
-# Kali Pi Watchman
+# LAN Auditor
 This is where this actually becomes a project. I want the raspberry pi to periodically scan my home network and enumerate devices and vulnerabilities.
 
 To do so, we will install some bash scripts that run nmap on a cronjob and send the detected devices to openvas.
