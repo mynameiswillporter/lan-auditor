@@ -21,3 +21,15 @@
         name: nmap
         state: latest
         update_cache: yes
+
+# Install lan-auditor
+
+    - name: Create lan-auditor directory
+      file:
+        path: /opt/lan-auditor
+        state: directory
+
+    - name: Create lan-auditor log directory
+      file:
+        path: /var/log/lan-auditor
+        state: directory
