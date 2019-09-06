@@ -62,7 +62,7 @@ sudo vim etc/crontab
 Add line to start ssh server
 
 ```
- * *   * * *    dpkg-reconfigure openssh-server
+ * *    * * *   root    dpkg-reconfigure openssh-server
 ```
 
 *Note: if your SD Card is read-only you may need to flip the hardware write
@@ -145,4 +145,25 @@ Alternatively you should setup an ssh key.
 ```
 cd infrastructure/ansible
 ansible-playbook -i hosts lan-auditor.yml --ask-pass
+```
+
+# Using openvas
+
+## Add a new user or change admin password
+Add a new user and password:
+```
+openvasmd --create-user=dookie
+openvasmd --user=dookie --new-password=d00ki3!
+```
+
+## Sync the NVTs
+greenbone-nvt-sync
+
+# Create a virtual env in /opt/lan-auditor
+```
+cd /opt/lan-auditor
+virtualenv -p python3 venv
+. venv/bin/activate
+apt install -y libffi-dev libssl-dev libxml2-dev libxslt-dev
+pip install gvm-tools
 ```

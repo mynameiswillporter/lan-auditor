@@ -11,7 +11,7 @@
         state: latest
         update_cache: yes
         force_apt_get: yes
-        ignore_errors: yes
+      ignore_errors: yes
 
     - name: Fix broken dependencies that come with our kali distro
       command: apt --fix-broken install -y
@@ -37,7 +37,7 @@
         name: openvas
         state: latest
         update_cache: yes
-        ignore_errors: yes
+      ignore_errors: yes
 
     - name: Fix broken dependencies that come with our kali distro
       command: apt --fix-broken install -y
