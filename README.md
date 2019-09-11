@@ -72,7 +72,11 @@ may need to remount as read-write.*
 Remounting as read-write (only if neccesary):
 `sudo mount -o remount,rw '/media/your mount location'`
 
-7. Locate the IP address of your kali pi.
+
+### Ok now put the SD Card in the raspberry pi and let it boot.
+
+7. Locate the IP address of your kali pi.  *You can probably use your router
+or nmap to do this.*
 
 Mine was 192.168.1.131
 
@@ -99,7 +103,7 @@ on raspberry pi configurations, but we have kali so...
 
 ```
 apt-get update
-apt install lua5.1 alsa-utils psmisc && apt --fix-broken install
+apt install -y lua5.1 alsa-utils psmisc && apt --fix-broken install -y
 
 wget https://archive.raspberrypi.org/debian/pool/main/r/raspi-config/raspi-config_20180406+1_all.deb
 wget https://archive.raspberrypi.org/debian/pool/main/r/rpi-update/rpi-update_20140705_all.deb
@@ -110,7 +114,7 @@ Now we run `raspi-config`.
 
 This has one of those weird command line gui's so choose `7 Advanced Options` and then `A1 Expand Filesystem`.
 
-Then choose `Reboot`.
+Then choose `<Finish>` and `Reboot`.
 
 Once it reboots, ssh back in and check the disk availability.
 
@@ -166,4 +170,7 @@ virtualenv -p python3 venv
 . venv/bin/activate
 apt install -y libffi-dev libssl-dev libxml2-dev libxslt-dev
 pip install gvm-tools
+mkdir -p /usr/local/var/run
+openvasmd --unix-socket=/usr/local/var/run/gvmd.sock
+gvm-cli socket --xml "<get_version/>"
 ```
